@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>꿈틀 | 나의 2026 만다라트</title>
+    <link rel="stylesheet" th:href="@{/css/createForm.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-logo">
+        <i class="fas fa-seedling"></i>
+        <span>꿈틀</span>
+    </div>
+    <div class="header-menu">
+        <a th:href="@{/logout}" class="btn-logout-top">로그아웃</a>
+    </div>
+</header>
+
+<div class="main-layout">
+    <div class="mandalart-section">
+        <h1 class="main-title"><span>2026년</span> 목표 대시보드</h1>
+        <div class="mandalart-center-only">
+            <div class="category-block center-block">
+                <div th:each="j : ${#numbers.sequence(0, 8)}" class="cell-display"
+                     th:with="catIdx=${j < 4 ? j : j - 1}"
+                     th:classappend="${j == 4} ? 'absolute-center' : 'category-title'">
+
+                    <div th:if="${j != 4}"
+                         class="clickable-area"
+                         th:onclick="|openCategory(${mandalart.categories[catIdx].id})|">
+                        <span th:text="${mandalart.categories[catIdx].categoryName}">카테고리명</span>
+                    </div>
+
+                    <div th:if="${j == 4}" class="center-label">
+                        <span>2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn-edit" th:onclick="|location.href='/mandalart/edit/' + ${mandalart.id}|">만다라트 수정하기</button>
+    </div>
+
+    <div class="dashboard-panel">
+        <div class="info-card">
+            <p class="card-label">성장 D-Day</p>
+            <h2 class="card-value" th:text="|D-${dDay}|">D-0</h2>
+        </div>
+
+        <div class="info-card">
+            <h3>전체 달성률</h3>
+            <div class="progress-container">
+                <div class="progress-fill" th:style="|width: ${progress}%;|"></div>
+            </div>
+            <p class="progress-text" th:text="|현재 ${progress}% 피어나는 중|">0%</p>
+        </div>
+
+        <div class="info-card">
+            <h3>최근 성공 기록</h3>
+            <ul class="activity-list">
+                <li th:each="activity : ${recentActivities}">
+                    <i class="fas fa-seedling"></i>
+                    <span th:text="|${activity.category.categoryName}: ${activity.content}|">성공 활동</span>
+                </li>
+                <li th:if="${#lists.isEmpty(recentActivities)}" class="empty-msg">첫 꿈틀을 시작해볼까요?</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="transition-overlay" class="zoom-overlay"></div>
+
+<script th:inline="javascript">
+    /**
+     * 카테고리 상세 페이지 이동 함수
+     */
+    function openCategory(categoryId) {
+        console.log("선택된 카테고리 ID:", categoryId);
+        const overlay = document.getElementById('transition-overlay');
+        overlay.classList.add('active');
+        setTimeout(() => {
+            window.location.href = '/mandalart/category/' + categoryId;
+        }, 800);
+    }
+</script>
+
+</body>
+</html>

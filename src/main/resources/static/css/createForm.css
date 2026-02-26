@@ -1,0 +1,140 @@
+/* 1. 전체 화면 설정 */
+html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto !important;
+    background-color: #fdfbf7;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5d5d5d;
+}
+
+/* 2. 메인 레이아웃: 가로 배치 [핵심 수정!] */
+.main-form {
+    width: 100%;             /* 폼 자체의 너비를 화면 끝까지 넓힘 [핵심!] */
+    max-width: 1600px;       /* 너무 퍼지지 않게 최대 너비만 살짝 잡아줌 */
+    margin: 0 auto;          /* 넓어진 폼을 화면 정중앙에 배치 */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; /* 요소들을 가운데로 모음 */
+    align-items: center;     /* 수직 중앙 정렬은 유지 */
+    min-height: 120vh;       /* 화면 높이보다 더 크게 설정해서 여백 공간 확보! [핵심] */
+    gap: 50px;               /* 인포 섹션과 만다라트 사이 간격 (작을수록 더 붙음) */
+    background-color: #fdfbf7;
+    padding: 100px 0;     /* 여기서 실제로 위아래 여백을 크게 줌! */
+}
+
+/* 왼쪽 정보 섹션 */
+.info-section {
+    flex: 0 0 auto;
+    margin-left: 0px;      /* 왼쪽 마진을 크게 주면 인포 섹션이 오른쪽으로 밀려! */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.guide-text {
+    color: #8e877d;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+/* 오른쪽 만다라트 섹션 */
+.mandalart-section {
+    flex: 0 0 auto;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0;
+}
+
+/* 3. 격자 크기 조정 [핵심 수정!] */
+.mandalart-outer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 6px; /* 선을 조금 더 두껍게 */
+    background-color: #b0a99f;
+    border: 6px solid #b0a99f;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.category-block {
+    display: grid;
+    grid-template-columns: repeat(3, 70px); /* 52px -> 75px로 크기 키움! */
+    grid-template-rows: repeat(3, 70px);
+    gap: 1px;
+}
+
+
+/* 개별 칸(Cell) 설정 */
+.cell {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: #444;
+    font-family: 'Pretendard', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;      /* 가로 중앙 정렬 */
+    resize: none;            /* 크기 조절 비활성화 */
+    overflow: hidden;        /* 스크롤바 숨기기 */
+    padding-top: 10px;       /* 수직 중앙 정렬을 위한 패딩 (75px 칸 기준) [핵심!] */
+    line-height: 1.4;        /* 줄 간격 */
+    box-sizing: border-box;  /* 패딩이 크기에 영향을 주지 않도록 */
+}
+
+/* 잠긴 칸(Locked Cell) 스타일 추가 */
+.locked-cell {
+    cursor: default;
+    color: #666;
+    padding-top: 30px !important;
+}
+
+.cell.absolute-center textarea {
+    padding-top: 25px !important;
+    font-weight: bold;
+}
+
+/* 구역 색상 */
+.center-block, .sub-center { background-color: #f2e9d9; }
+.absolute-center { background-color: #e2d5bd !important; }
+.absolute-center input { font-weight: bold; }
+
+/* 5. 저장 버튼 (왼쪽으로 이동) */
+.btn-submit {
+    padding: 15px 60px;
+    background-color: #b0a99f;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #8e877d;
+    transform: scale(1.05);
+}

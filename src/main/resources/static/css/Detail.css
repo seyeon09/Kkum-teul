@@ -1,0 +1,120 @@
+/* 기본 스타일 */
+:root {
+    --primary: #4A90E2;
+    --center: #FFD54F;
+    --bg: #F5F7FA;
+    --white: #FFFFFF;
+    --text: #333;
+}
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 헤더 */
+.header {
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-btn {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background: var(--white);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* 메인 컨텐츠 레이아웃 */
+.main-content {
+    display: flex;
+    gap: 40px;
+    padding: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* 만다르트 그리드 */
+.mandalart-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 140px);
+    grid-template-rows: repeat(3, 140px);
+    gap: 12px;
+}
+
+.cell {
+    background: var(--white);
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.category-center {
+    background: var(--center);
+    font-weight: bold;
+    border: 2px solid #FFA000;
+}
+
+/* 성장 카드 */
+.growth-card {
+    width: 320px;
+    background: var(--white);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.image-box {
+    width: 100%;
+    height: 200px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#growth-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #EEE;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: width 0.6s ease;
+}
+/* 완료된 셀 스타일 (색상 변경 + 취소선) */
+.cell.sub-cell.completed {
+    background-color: #e9f5db !important; /* 연두색 배경 */
+    color: #6a994e !important;           /* 진한 초록 글자 */
+    text-decoration: line-through;      /* 취소선 표시 (-) */
+    font-weight: bold;
+    border: 2px solid #a7c957;
+}

@@ -1,0 +1,41 @@
+spring:
+  # 1. 보안 설정
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 354499112470-i5v2s6011j2vcdn39gtulnj9b8do1l25.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - profile
+              - email
+
+  # 2. 데이터베이스 설정 (server에서 여기로 이사 옴!) [cite: 2026-02-24]
+  datasource:
+    url: jdbc:mysql://localhost:3306/kkumteuldb?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: "1234" # 비밀번호에 특수문자가 섞일 수 있으니 따옴표 권장!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # 3. JPA/Hibernate 설정
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  # 4. 타임리프 설정
+  thymeleaf:
+    cache: false
+
+# 5. 서버 관련 설정 (별도의 대문) [cite: 2026-02-24]
+server:
+  servlet:
+    session:
+      timeout: 30m
+      cookie:
+        http-only: true

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>꿈틀 - 2026 만다라트 설정</title>
+    <link rel="stylesheet" th:href="@{/css/createForm.css}">
+</head>
+<body>
+
+<form th:action="@{/mandalart/save}" method="post" class="main-form">
+    <input type="hidden" name="mandalartId" th:value="${mandalartId}" th:if="${mandalartId != null}">
+
+    <div class="info-section">
+        <h1>
+            <span th:text="${userName != null ? userName : 'ooo'}">ooo</span>님의<br>
+            2026년 만다라트
+        </h1>
+        <p class="guide-text" th:text="${isEdit ? '목표를 수정하고 다시 저장해보세요!' : '세부 목표를 채워주세요!'}">세부 목표를 채워주세요!</p>
+        <button type="submit" class="btn-submit" th:text="${isEdit ? '수정 완료하기' : '목표 저장하기'}">목표 저장하기</button>
+    </div>
+
+    <div class="mandalart-section">
+        <div class="mandalart-outer-grid">
+            <div th:each="i : ${#numbers.sequence(0, 8)}" class="category-block">
+                <div th:each="j : ${#numbers.sequence(0, 8)}" class="cell"
+                     th:with="index=${(i / 3) * 27 + (i % 3) * 3 + (j / 3) * 9 + (j % 3)}"
+                     th:classappend="${
+                            (index == 40) ? 'absolute-center' :
+                            (i == 4) ? 'center-block' :
+                            (j == 4) ? 'sub-center' : ''
+                         }">
+
+                    <textarea th:name="'goal[' + ${index} + ']'"
+                              th:readonly="${
+                                    index == 40 || index == 10 || index == 30 || index == 13 || index == 31 ||
+                                    index == 16 || index == 32 || index == 37 || index == 39 || index == 41 ||
+                                    index == 43 || index == 48 || index == 64 || index == 49 || index == 67 ||
+                                    index == 50 || index == 70
+                                  }"
+                              th:classappend="${
+                                    (index == 40 || index == 10 || index == 30 || index == 13 || index == 31 ||
+                                    index == 16 || index == 32 || index == 37 || index == 39 || index == 41 ||
+                                    index == 43 || index == 48 || index == 64 || index == 49 || index == 67 ||
+                                    index == 50 || index == 70) ? 'locked-cell' : ''
+                                  }"
+                              th:text="${
+                                    (index == 40) ? '2026' :
+                                    (index == 10 || index == 30) ? '독서' :
+                                    (index == 13 || index == 31) ? '운동' :
+                                    (index == 16 || index == 32) ? '공부' :
+                                    (index == 37 || index == 39) ? '경제' :
+                                    (index == 41 || index == 43) ? '여행' :
+                                    (index == 48 || index == 64) ? '취미' :
+                                    (index == 49 || index == 67) ? '가족' :
+                                    (index == 50 || index == 70) ? '자기관리' :
+                                    (goals != null && goals['goal[' + index + ']'] != null) ? goals['goal[' + index + ']'] : ''
+                              }"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

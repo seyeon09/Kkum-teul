@@ -1,0 +1,41 @@
+:root {
+    --primary-color: #6a994e;
+    --secondary-color: #f2e8cf;
+    --text-color: #386641;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans KR', sans-serif; }
+
+body { background-color: var(--secondary-color); color: var(--text-color); min-height: 100vh; display: flex; flex-direction: column; }
+
+.landing-container { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; text-align: center; }
+
+.logo-area { margin-bottom: 20px; font-size: 28px; font-weight: 700; color: var(--primary-color); }
+.logo-area i { margin-right: 10px; animation: sway 3s ease-in-out infinite; display: inline-block; }
+
+.main-title { font-size: 3rem; line-height: 1.3; margin-bottom: 20px; }
+.highlight { color: var(--primary-color); border-bottom: 4px solid var(--primary-color); }
+.sub-title { font-size: 1.1rem; color: #666; margin-bottom: 40px; }
+
+/* 버튼 디자인 */
+.google-login-btn, .action-btn {
+    display: flex; align-items: center; justify-content: center;
+    padding: 14px 28px; border-radius: 50px; text-decoration: none;
+    transition: all 0.3s ease; font-weight: 500; border: 1px solid #ddd; background: white; color: #757575;
+}
+.google-login-btn img { width: 20px; margin-right: 12px; }
+.google-login-btn:hover, .action-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+
+.welcome-text { font-size: 1.2rem; margin-bottom: 20px; font-weight: 500; }
+.user-name { color: var(--primary-color); font-weight: 700; }
+
+.btn-group { display: flex; gap: 15px; justify-content: center; }
+.action-btn.primary { background-color: var(--primary-color); color: white; border: none; }
+
+.preview-area { display: flex; gap: 20px; margin-top: 60px; }
+.feature-card { background: rgba(255,255,255,0.4); padding: 20px; border-radius: 15px; min-width: 150px; }
+.feature-card i { font-size: 20px; color: var(--primary-color); margin-bottom: 10px; display: block; }
+
+.landing-footer { padding: 20px; text-align: center; color: #999; font-size: 0.8rem; }
+
+@keyframes sway { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }

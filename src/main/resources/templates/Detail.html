@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상세 만다르트 페이지</title>
+  <link rel="stylesheet" th:href="@{/css/detail.css}">
+</head>
+<body>
+
+<header class="header">
+  <button id="btn-back" class="nav-btn">← 뒤로가기</button>
+  <h1 id="category-title">Loading...</h1>
+  <div class="spacer"></div>
+</header>
+
+<main class="main-content">
+  <section class="mandalart-container">
+    <div class="mandalart-grid" id="mandalart-grid">
+      <div class="cell sub-cell" data-index="0"></div>
+      <div class="cell sub-cell" data-index="1"></div>
+      <div class="cell sub-cell" data-index="2"></div>
+
+      <div class="cell sub-cell" data-index="3"></div>
+      <div class="cell category-center" id="center-cell"></div> <div class="cell sub-cell" data-index="4"></div>
+
+      <div class="cell sub-cell" data-index="5"></div>
+      <div class="cell sub-cell" data-index="6"></div>
+      <div class="cell sub-cell" data-index="7"></div>
+    </div>
+  </section>
+
+  <section class="growth-panel">
+    <div class="growth-card">
+      <h3>현재 성장 단계</h3>
+      <div class="image-box">
+        <img id="growth-img" src="" alt="성장 이미지">
+      </div>
+      <div class="status-info">
+        <p id="achievement-text">달성률 계산 중...</p>
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script th:src="@{/js/detail.js}"></script>
+</body>
+</html>
