@@ -1,37 +1,28 @@
-HELP.md
-.gradle
+.gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+#  빌드 결과물 (컴파일된 파일들)
+/target/
+/build/
+/out/
+*.class
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+#  IDE 설정 파일 (IntelliJ, VS Code)
+.idea/
 *.iml
-*.ipr
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-### VS Code ###
 .vscode/
+.settings/
+.classpath
+.project
+
+# 시스템 파일
+.DS_Store
+Thumbs.db
+
+# 로그 및 임시 파일
+*.log
+/temp/
+
+# 로컬 설정 및 비밀번호 (필요시)
+/src/main/resources/application-local.properties
