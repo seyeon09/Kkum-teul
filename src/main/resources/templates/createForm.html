@@ -15,8 +15,8 @@
             <span th:text="${userName != null ? userName : 'ooo'}">ooo</span>님의<br>
             2026년 만다라트
         </h1>
-        <p class="guide-text" th:text="${isEdit ? '목표를 수정하고 다시 저장해보세요!' : '세부 목표를 채워주세요!'}">세부 목표를 채워주세요!</p>
-        <button type="submit" class="btn-submit" th:text="${isEdit ? '수정 완료하기' : '목표 저장하기'}">목표 저장하기</button>
+        <p class="guide-text" th:text="${(isEdit ?: false) ? '목표를 수정하고 다시 저장해보세요!' : '세부 목표를 채워주세요!'}">세부 목표를 채워주세요!</p>
+        <button type="submit" class="btn-submit" th:text="${(isEdit ?: false) ? '수정 완료하기' : '목표 저장하기'}">목표 저장하기</button>
     </div>
 
     <div class="mandalart-section">

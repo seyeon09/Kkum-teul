@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes; // [필수 추가]
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import com.kkumteul.domain.Cell;
 import java.util.Comparator;
@@ -31,14 +32,19 @@ public class MandalartController {
      */
     @GetMapping("/mandalart/new")
     public String createForm(Model model, @AuthenticationPrincipal OAuth2User principal) {
-        // 로그인한 사용자의 정보를 principal 이라는 이름으로 받음
-        // principal이 널값이 아니라면
-        if (principal != null) {
-            String name = principal.getAttribute("name");
-            // name 변수에 사용자 정보중 name에 해당하는 값을 가져옴
-            model.addAttribute("userName", name);
-            // html에서 userName이라는 값으로 쓰게 모델에 담아줌
-        }
+
+        // 1. 사용자 이름 처리 (null일 경우 'ooo'으로 기본값 설정)
+        String name = (principal != null) ? principal.getAttribute("name") : "ooo";
+        model.addAttribute("userName", name);
+
+        // 2. [핵심] SpEL 에러 방지를 위한 기본값 설정
+        // 신규 작성이므로 수정 모드가 아님을 명시 (null -> false 형변환 에러 해결)
+        model.addAttribute("isEdit", false);
+
+        // 3. 빈 목표(goals) 객체 전달
+        // 화면의 textarea들이 null을 참조해서 터지지 않도록 빈 Map을 넣어줌
+        model.addAttribute("goals", new HashMap<String, String>());
+
         // createForm html 화면에 띄워줌
         return "createForm";
     }
